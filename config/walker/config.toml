@@ -1,0 +1,94 @@
+force_keyboard_focus = false
+close_when_open = true
+click_to_close = true
+selection_wrap = false
+global_argument_delimiter = "#"
+exact_search_prefix = "'"
+theme = "dotfiles"
+disable_mouse = false
+additional_theme_location = "~/.local/share/dotfiles/default/walker/themes/"
+
+[shell]
+anchor_top = true
+anchor_bottom = true
+anchor_left = true
+anchor_right = true
+
+[placeholders]
+"default" = { input = "Search", list = "No Results" }
+"menus:system" = { input = "System", list = "No Results" }
+"menus:screenshots" = { input = "Screenshots", list = "No Results" }
+
+[keybinds]
+close = ["Escape"]
+next = ["Down"]
+previous = ["Up"]
+toggle_exact = ["ctrl e"]
+resume_last_query = ["ctrl r"]
+quick_activate = []
+
+[providers]
+default = ["desktopapplications"]
+empty = ["desktopapplications"]
+
+[[providers.prefixes]]
+prefix = ";"
+provider = "providerlist"
+
+[[providers.prefixes]]
+prefix = "/"
+provider = "files"
+
+[[providers.prefixes]]
+prefix = "="
+provider = "calc"
+
+[providers.actions]
+dmenu = [
+ { action = "select", default = true, bind = "Return" },
+]
+
+providerlist = [
+  { action = "activate", default = true, bind = "Return", after = "ClearReload" },
+]
+
+calc = [
+  { action = "copy", default = true, bind = "Return" },
+  { action = "delete", bind = "ctrl d", after = "AsyncReload" },
+  { action = "save", bind = "ctrl s", after = "AsyncClearReload" },
+]
+
+desktopapplications = [
+  { action = "start", default = true, bind = "Return" },
+  { action = "start:keep", label = "open+next", bind = "shift Return", after = "KeepOpen" },
+  { action = "erase_history", label = "clear hist", bind = "ctrl h", after = "AsyncReload" },
+  { action = "pin", bind = "ctrl p", after = "AsyncReload" },
+  { action = "unpin", bind = "ctrl p", after = "AsyncReload" },
+  { action = "pinup", bind = "ctrl n", after = "AsyncReload" },
+  { action = "pindown", bind = "ctrl m", after = "AsyncReload" },
+]
+
+clipboard = [
+  { action = "copy", default = true, bind = "Return" },
+  { action = "remove", bind = "ctrl d", after = "ClearReload" },
+  { action = "remove_all", global = true, label = "clear", bind = "ctrl shift d", after = "ClearReload" },
+  { action = "toggle_images", global = true, label = "toggle images", bind = "ctrl i", after = "ClearReload" },
+  { action = "edit", bind = "ctrl o" },
+]
+
+"menus:screenshots" = [
+  { action = "area_clipboard", bind = "Return" },
+  { action = "area_file", bind = "Return" },
+  { action = "window_clipboard", bind = "Return" },
+  { action = "window_file", bind = "Return" },
+  { action = "fullscreen_clipboard", bind = "Return" },
+  { action = "fullscreen_file", bind = "Return" },
+]
+
+"menus:system" = [
+  { action = "lock", bind = "Return" },
+  { action = "suspend", bind = "Return" },
+  { action = "relaunch", bind = "Return" },
+  { action = "restart", bind = "Return" },
+  { action = "shutdown", bind = "Return" },
+]

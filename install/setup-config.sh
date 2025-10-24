@@ -1,0 +1,41 @@
+#!/bin/bash
+
+set -e
+
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+source "$SCRIPT_DIR/lib/helpers.sh"
+source "$SCRIPT_DIR/lib/backup.sh"
+DOTFILES_DIR="$HOME/.local/share/dotfiles"
+
+log_info "Backing up existing config..."
+
+# Collect all targets that will be affected
+TARGETS=()
+for item in "$DOTFILES_DIR/config"/*; do
+  if [ -e "$item" ]; then
+    item_name=$(basename "$item")
+    TARGETS+=("$HOME/.config/$item_name")
+  fi
+done
+
+for target in "${TARGETS[@]}"; do
+  if [ -e "$target" ]; then
+    backup_file "$target" || {
+      log_error "Failed to backup $(basename "$target")"
+      exit 1
+    }
+  fi
+done
+
+for target in "${TARGETS[@]}"; do
+  remove_path "$target"
+done
+
+cp -r "$DOTFILES_DIR/config/"* "$HOME/.config/"
+log_success "Config copied!"
+
+# Create GTK CSS imports
+echo "@import url(\"file://$HOME/.local/share/dotfiles/current/theme/gtk.css\");" > "$HOME/.config/gtk-3.0/gtk.css"
+echo "@import url(\"file://$HOME/.local/share/dotfiles/current/theme/gtk.css\");" > "$HOME/.config/gtk-4.0/gtk.css"
+
+log_success "Configuration complete!"

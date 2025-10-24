@@ -1,0 +1,104 @@
+# Security & Authentication
+gnome-keyring
+polkit-gnome
+
+# Browser & Terminal
+firefox
+alacritty
+
+# Development
+git
+lazygit
+vim
+neovim
+
+# Shell Tools
+bat
+btop
+fd
+fzf
+ripgrep
+zoxide
+pv
+bc
+
+# Hyprland Ecosystem
+hyprland
+hyprland-qtutils
+hyprland-qt-support
+hyprpaper
+hyprpicker
+hyprlock
+xdg-desktop-portal-hyprland
+hyprsunset
+hyprcursor
+hyprshot
+
+# Wayland Tools & UI
+waybar
+mako
+walker
+swayosd
+swaybg
+grim
+slurp
+satty
+kooha
+zenity
+uwsm
+gjs
+
+# Audio
+pamixer
+wiremix
+
+# Bluetooth & Network
+bluez
+bluez-libs
+bluez-utils
+bluetui
+openssh
+ufw
+
+# File Management
+nautilus
+nautilus-open-any-terminal
+rsync
+gvfs-dnssd
+unzip
+
+# System Utilities
+plocate
+pacman-contrib
+
+# Fonts, themes & icons
+ttf-jetbrains-mono-nerd
+noto-fonts
+noto-fonts-emoji
+otf-font-awesome
+yaru-icon-theme
+bibata-cursor-theme
+gnome-themes-extra
+
+# Applications
+localsend-bin
+mpv
+
+# Elephant Suite
+elephant-calc
+elephant-clipboard
+elephant-files
+elephant-menus
+
+# Image & Video Processing
+imagemagick
+ffmpeg
+
+# Desktop Portals
+xdg-desktop-portal-gtk
+xdg-utils
+
+# Utilities
+wget
+jq
+gum
