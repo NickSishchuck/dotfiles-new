@@ -3,7 +3,7 @@
 set -e
 
 DOTFILES_DIR="$HOME/.local/share/dotfiles"
-REPO_URL="https://github.com/NickSishchuck/dotfiles-old.git"
+REPO_URL="https://github.com/NickSishchuck/dotfiles-new.git"
 
 echo "=============================="
 echo "Minimal Hyprland Setup"
