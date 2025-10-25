@@ -2,7 +2,7 @@
 
 set -e
 
-SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 source "$SCRIPT_DIR/lib/helpers.sh"
 source "$SCRIPT_DIR/lib/backup.sh"
 DOTFILES_DIR="$HOME/.local/share/dotfiles"
@@ -34,7 +34,7 @@ sed -i '/source = .*\/\(nvidia-env\.conf\|env\.conf\)$/d' "$HYPRLAND_CONF"
 sed -i '/source = .*\/\(laptop-keybindings\.conf\|desktop-keybindings\.conf\)$/d' "$HYPRLAND_CONF"
 
 # Insert correct ones for current hardware
-sed -i "/source = .*autostart\\.conf/a source = ~/.local/share/dotfiles/default/hypr/conf/${ENV_CONF}\\nsource = ~/.local/share/dotfiles/default/hypr/conf/${KEYBIND_CONF}" "$HYPRLAND_CONF"
+sed -i "/source = .*autostart\\.conf/a source = ~/.local/share/dotfiles/default/hypr/conf/${ENV_CONF}\\nsource = ~/.config/hypr/conf/${KEYBIND_CONF}" "$HYPRLAND_CONF"
 
 log_success "Hardware-specific configuration applied"
 
@@ -45,8 +45,8 @@ if command -v hyprctl &>/dev/null && hyprctl monitors &>/dev/null; then
   MONITORS_CONF="$HOME/.config/hypr/conf/monitors.conf"
   TEMP_CONF=$(mktemp)
 
-  echo "env = GDK_SCALE,1" > "$TEMP_CONF"
-  echo "" >> "$TEMP_CONF"
+  echo "env = GDK_SCALE,1" >"$TEMP_CONF"
+  echo "" >>"$TEMP_CONF"
 
   # Parse hyprctl output and extract highest mode for each monitor
   hyprctl monitors | awk '
@@ -81,7 +81,7 @@ if command -v hyprctl &>/dev/null && hyprctl monitors &>/dev/null; then
     END {
       if (monitor && mode) print "monitor=" monitor "," mode ",auto,1"
     }
-  ' >> "$TEMP_CONF"
+  ' >>"$TEMP_CONF"
 
   # Only update if we got valid output
   if grep -q "^monitor=" "$TEMP_CONF"; then
