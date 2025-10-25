@@ -65,7 +65,7 @@ _installPackages() {
     fi
 
     # Try to install, handle conflicts gracefully
-    if spinner "Installing $pkg... [$current/$total]" paru --noconfirm --needed -S "${pkg}" 2>&1; then
+    if spinner "Installing $pkg... [$current/$total]" paru --noconfirm --needed -fm -S "${pkg}" 2>&1; then
       log_success "$pkg"
     else
       log_error "Failed to install: $pkg"
